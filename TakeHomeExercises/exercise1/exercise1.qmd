@@ -1,0 +1,22 @@
+---
+title: "exercise1"
+---
+
+# Step-by-step Preparation
+
+| No. | Step                                                                                                                                                           | Screenshot                                |
+|------------|------------------------|-------------------------------------|
+| 1   | Click on "More", choose the local csv data file to connect it with Tableau.                                                                                    | ![](images/%E5%9B%BE%E7%89%87%201-01.png) |
+| 2   | Link the "respopagesextod2022.csv" to the Tableau data source.                                                                                                 | ![](images/%E5%9B%BE%E7%89%87%201-02.png) |
+| 3   | Separate male and female to create a age-sex pyramid view. Click on the little triangle ---\> Create Calculated Filed... to create a new measure value.        | ![](images/%E5%9B%BE%E7%89%87%201-03.png) |
+| 4   | In the pop up window, create a new variable called "Male" to monitor male population information.                                                              | ![](images/%E5%9B%BE%E7%89%87%201-04.png) |
+| 5   | Similarly, create another new variable called "Female" to monitor female population.                                                                           | ![](images/%E5%9B%BE%E7%89%87%201-05.png) |
+| 6   | Drag new-create variables "Male" and "Female" to Columns, and "AG" to Rows.                                                                                    | ![](images/%E5%9B%BE%E7%89%87%201-06.png) |
+| 7   | To have a percentile view, click on the Analysis ---\> Percentage of ---\> Table. You will see the axis become percentiles instead of population exact values. | ![](images/%E5%9B%BE%E7%89%87%201-07.png) |
+| 8   | Standardizing the plot to a pyramid view by right click on the Y axis ---\> Sort descending.                                                                   | ![](images/%E5%9B%BE%E7%89%87%201-08.png) |
+| 9   | Right click on the X female axis ---\> Edit Axis...                                                                                                            | ![](images/%E5%9B%BE%E7%89%87%201-09.png) |
+| 10  | In the pop up window, choose "Reversed" check box under "Scale".                                                                                               | ![](images/%E5%9B%BE%E7%89%87%201-10.png) |
+| 11  | Drag "Sex" to colors.On the right hand side, choose a better fit color for the plot to distinguish male and female.                                            | ![](images/%E5%9B%BE%E7%89%87%201-11.png) |
+| 12  | Drag PA to Rows to create a trellis display. Right click on the Y axis, click on the Filter...                                                                 | ![](images/%E5%9B%BE%E7%89%87%201-12.png) |
+| 13  | In the pop up window, go to Top ---\> By filed, and choose top 9 plots by sum of Pop value.                                                                    | ![](images/%E5%9B%BE%E7%89%87%201-13.png) |
+| 14  | Change the table name.                                                                                                                                         | ![](images/%E5%9B%BE%E7%89%87%201.png)    |

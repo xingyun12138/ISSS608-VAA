@@ -1,0 +1,29 @@
+---
+title: "Exercise1"
+author: "Li Xingyun"
+---
+
+# Getting Started
+
+## Install and launching R packages
+
+p_load in pacman package is to check if the package is already installed. If so, the package will be launched into R.
+
+```{r}
+pacman::p_load(tidyverse)
+```
+
+## Import the data
+
+```{r}
+exam_data <- read.csv("data/Exam_data.csv")
+```
+
+# Plotting a simple bar chat
+
+```{r}
+library(ggplot2)
+ggplot(data = exam_data, 
+       aes(x=RACE)) +
+  geom_bar()
+```

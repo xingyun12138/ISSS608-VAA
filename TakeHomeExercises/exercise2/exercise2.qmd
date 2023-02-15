@@ -1,0 +1,68 @@
+---
+title: "Take Home Exercise2"
+author: "Li Xingyun"
+date: "1 Feb 2023"
+date-modified: "`r Sys.Date()`"
+execute: 
+  eval: false #code output
+  echo: true #code chunk
+  warning: false
+format: html
+editor: visual
+---
+
+Remark the take-home-exercise 1 from classmates, give them reasonable advise to improve the visualization and implement the changes by ggplot2 and tidyverse.
+
+## 1. Import data & Packages
+
+```{r}
+pacman::p_load(ggplot2)
+pacman::p_load(tidyverse)
+pacman::p_load(see)
+pacman::p_load(reshape2)
+df <- read_csv("data/respopagesextod2022.csv")
+head(df)
+```
+
+## 2. **Critiques**
+
+original work
+
+### ![](images/image-468466803.png)
+
+### 2.1 Clarity
+
+The value is not showed clearly in a well-marked manner, especially the Y axis. Some plot font have a label. With the dimension of this graph, user can hardly see the X axis value for the topside plots.
+
+### 2.2 Aesthetics
+
+The repeating horizontal Y axis is not needed, making the graph very wordy. Instead of having a "Male" and "Female" label 3 times, it is better to use one label to indicate the meaning of colors. Besides, it is not necessary to put multiple plot titles, as they are showing same information. It is enough to have one general title and area names.
+
+## 3. Remake
+
+Data Pre-processing
+
+```{r}
+regions <- c("Bedok","Choa Chu Kang", "Hougang","Jurong West","Punggol","Sengkang","Tampines","Woodlands","Yishun")
+df2 <- group_by(df,PA,AG,Sex)
+df3 <- summarise(df2,Count=sum(Pop))
+df3 <- filter(df3, PA %in% regions)
+order_vector <- c("0_to_4","5_to_9","10_to_14","15_to_19","20_to_24","25_to_29","30_to_34","35_to_39","40_to_44","45_to_49","50_to_54","55_to_59","60_to_64","65_to_69","70_to_74","75_to_79","80_to_84","85_to_89","90_and_over")
+df4 <- df3 %>%
+  arrange(PA,factor(AG, levels = order_vector))
+head(df4)
+```
+
+use ggplot to visual
+
+```{r}
+pacman::p_load(ggthemes)
+df4 %>%
+  mutate(AG=factor(AG,levels=order_vector)) %>%
+  ggplot(aes(y=AG,
+             x=ifelse(test = Sex == "Males", yes=Count,no=-Count),
+             fill=Sex))+geom_bar(stat="identity")+facet_wrap(~PA)+labs(x="Population Amount",y="Age Group",title="Age-Sex Structure of Singapore at Planning Area Level")
+  ggsave("test1.png", units="in", dpi=300, width=15, height=15, device="png")
+```
+
+![](test1.png)

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ISSS608-VAA - Take Home Exercise3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">ISSS608-VAA</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on-Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercises">    
+        <li>
+    <a class="dropdown-item" href="../../Hands_on_exercises/exercise1/exercise1.html">
+ <span class="dropdown-text">Week 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands_on_exercises/exercise2/exercise2.html">
+ <span class="dropdown-text">Week 2</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-Home-Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercises">    
+        <li>
+    <a class="dropdown-item" href="../../TakeHomeExercises/exercise1/exercise1.html">
+ <span class="dropdown-text">Week 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../TakeHomeExercises/exercise2/exercise2.html">
+ <span class="dropdown-text">Week 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../TakeHomeExercises/exercise3/exercise3.html">
+ <span class="dropdown-text">Week 3</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">In-Class-Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercises">    
+        <li>
+    <a class="dropdown-item" href="../../InClassExercises/exercise3/exercise3.html">
+ <span class="dropdown-text">Week 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../InClassExercises/exercise4/exercise4.html">
+ <span class="dropdown-text">Week 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../InClassExercises/exercise5/exercise5.html">
+ <span class="dropdown-text">Week 5</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Take Home Exercise3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This exercise is proposed on analyzing the resale prices of public housing property by residential towns and estates in Singapore and discover the salient patterns. ggplot2 and its extensions should be the main tools to be applied.</p>
+<p>For the purpose of this study, the focus should be on 3-ROOM, 4-ROOM and 5-ROOM types. The study period should be on 2022</p>
+<ol type="1">
+<li>Import and preprocess the data set raw data can be acquired from https://data.gov.sg/dataset/resale-flat-prices</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/resale-flat-prices-based-on-registration-date-from-jan-2017-onwards.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    month               town            flat_type            block          
+ Length:146701      Length:146701      Length:146701      Length:146701     
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+ street_name        storey_range       floor_area_sqm    flat_model       
+ Length:146701      Length:146701      Min.   : 31.00   Length:146701     
+ Class :character   Class :character   1st Qu.: 82.00   Class :character  
+ Mode  :character   Mode  :character   Median : 94.00   Mode  :character  
+                                       Mean   : 97.61                     
+                                       3rd Qu.:113.00                     
+                                       Max.   :249.00                     
+ lease_commence_date remaining_lease     resale_price    
+ Min.   :1966        Length:146701      Min.   : 140000  
+ 1st Qu.:1985        Class :character   1st Qu.: 358000  
+ Median :1996        Mode  :character   Median : 448000  
+ Mean   :1996                           Mean   : 478258  
+ 3rd Qu.:2007                           3rd Qu.: 565000  
+ Max.   :2019                           Max.   :1418000  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     month       town flat_type block       street_name storey_range
+1  2017-01 ANG MO KIO    2 ROOM   406 ANG MO KIO AVE 10     10 TO 12
+2  2017-01 ANG MO KIO    3 ROOM   108  ANG MO KIO AVE 4     01 TO 03
+3  2017-01 ANG MO KIO    3 ROOM   602  ANG MO KIO AVE 5     01 TO 03
+4  2017-01 ANG MO KIO    3 ROOM   465 ANG MO KIO AVE 10     04 TO 06
+5  2017-01 ANG MO KIO    3 ROOM   601  ANG MO KIO AVE 5     01 TO 03
+6  2017-01 ANG MO KIO    3 ROOM   150  ANG MO KIO AVE 5     01 TO 03
+7  2017-01 ANG MO KIO    3 ROOM   447 ANG MO KIO AVE 10     04 TO 06
+8  2017-01 ANG MO KIO    3 ROOM   218  ANG MO KIO AVE 1     04 TO 06
+9  2017-01 ANG MO KIO    3 ROOM   447 ANG MO KIO AVE 10     04 TO 06
+10 2017-01 ANG MO KIO    3 ROOM   571  ANG MO KIO AVE 3     01 TO 03
+   floor_area_sqm     flat_model lease_commence_date    remaining_lease
+1              44       Improved                1979 61 years 04 months
+2              67 New Generation                1978 60 years 07 months
+3              67 New Generation                1980 62 years 05 months
+4              68 New Generation                1980  62 years 01 month
+5              67 New Generation                1980 62 years 05 months
+6              68 New Generation                1981           63 years
+7              68 New Generation                1979 61 years 06 months
+8              67 New Generation                1976 58 years 04 months
+9              68 New Generation                1979 61 years 06 months
+10             67 New Generation                1979 61 years 04 months
+   resale_price
+1        232000
+2        250000
+3        262000
+4        265000
+5        265000
+6        275000
+7        280000
+8        285000
+9        285000
+10       285000</code></pre>
+</div>
+</div>
+<p>extract data that is on 3-ROOM, 4-ROOM and 5-ROOM types and happened in 2022.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[(df<span class="sc">$</span>month <span class="sc">&gt;=</span> <span class="dv">2022</span><span class="sc">/</span><span class="dv">01</span><span class="sc">/</span><span class="dv">01</span>)<span class="sc">&amp;</span>(df<span class="sc">$</span>month <span class="sc">&lt;=</span> <span class="dv">2022</span><span class="sc">/</span><span class="dv">12</span><span class="sc">/</span><span class="dv">31</span>),]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[(df<span class="sc">$</span>flat_type <span class="sc">==</span> <span class="st">"3 ROOM"</span>)<span class="sc">|</span>(df<span class="sc">$</span>flat_type <span class="sc">==</span> <span class="st">"4 ROOM"</span>)<span class="sc">|</span>(df<span class="sc">$</span>flat_type <span class="sc">==</span> <span class="st">"5 ROOM"</span>),]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         month       town flat_type block       street_name storey_range
+116678 2022-01 ANG MO KIO    3 ROOM   320  ANG MO KIO AVE 1     07 TO 09
+116679 2022-01 ANG MO KIO    3 ROOM   225  ANG MO KIO AVE 1     07 TO 09
+116680 2022-01 ANG MO KIO    3 ROOM   331  ANG MO KIO AVE 1     07 TO 09
+116681 2022-01 ANG MO KIO    3 ROOM   534 ANG MO KIO AVE 10     07 TO 09
+116682 2022-01 ANG MO KIO    3 ROOM   578 ANG MO KIO AVE 10     04 TO 06
+116683 2022-01 ANG MO KIO    3 ROOM   452 ANG MO KIO AVE 10     01 TO 03
+116684 2022-01 ANG MO KIO    3 ROOM   560 ANG MO KIO AVE 10     01 TO 03
+116685 2022-01 ANG MO KIO    3 ROOM   435 ANG MO KIO AVE 10     04 TO 06
+116686 2022-01 ANG MO KIO    3 ROOM   435 ANG MO KIO AVE 10     04 TO 06
+116687 2022-01 ANG MO KIO    3 ROOM   560 ANG MO KIO AVE 10     10 TO 12
+       floor_area_sqm     flat_model lease_commence_date    remaining_lease
+116678             73 New Generation                1977 54 years 05 months
+116679             67 New Generation                1978  55 years 01 month
+116680             68 New Generation                1981           58 years
+116681             82 New Generation                1980 57 years 02 months
+116682             67 New Generation                1980  57 years 01 month
+116683             83 New Generation                1979 56 years 07 months
+116684             67 New Generation                1980 57 years 02 months
+116685             67 New Generation                1979  56 years 01 month
+116686             67 New Generation                1979  56 years 01 month
+116687             67 New Generation                1980 57 years 02 months
+       resale_price
+116678       358000
+116679       355000
+116680       338000
+116681       420000
+116682       328000
+116683       360000
+116684       300000
+116685       333000
+116686       386000
+116687       330000</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Selection and Designed Consideration</li>
+<li>Analytics</li>
+</ol>
+<p>load ggplot and tidyverse packages</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggplot2,ggstatsplot,tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>3.1 Statistical Analysis</p>
+<p>3.1.1 One sample test on the sample mean for 3 different flat types. For each one of three types, we want to see how well the sample is reflecting the population.</p>
+<p>3 ROOM</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistostats</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df[df<span class="sc">$</span>flat_type<span class="sc">==</span><span class="st">"3 ROOM"</span>,],</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> resale_price,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.99</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"parametric "</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Resale Price"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"One Sample test on 3 ROOM Resale Price"</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="exercise3_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>4 ROOM</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistostats</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df[df<span class="sc">$</span>flat_type<span class="sc">==</span><span class="st">"4 ROOM"</span>,],</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> resale_price,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.99</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"parametric "</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Resale Price"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"One Sample test on 4 ROOM Resale Price"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="exercise3_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>5 ROOM</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistostats</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df[df<span class="sc">$</span>flat_type<span class="sc">==</span><span class="st">"5 ROOM"</span>,],</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> resale_price,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.99</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"parametric"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Resale Price"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"One Sample test on 5 ROOM Resale Price"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="exercise3_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From 3 graphs above, we can see that all 3 tests have a p value less than 0.01, which means our sample is indicating the population mean at 0.99 confidence level. Mean resale price of 3 Room, 4 Room and 5 Room are respectively $391000, $551000 and $656000.</p>
+<p>3.1.2 One-way Anova. We can compare the sample mean among 3 types.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> flat_type, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> resale_price,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"parametric"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean.ci =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.comparisons =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.display =</span> <span class="st">"s"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.adjust.method =</span> <span class="st">"fdr"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">messages =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Flat Type"</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Resale Price"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"One Way Anova test on Resale Price vs Flat Type"</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="exercise3_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It is clear that p value is less than 0.01. There are significant difference between the sample means.</p>
+<p>3.1.3 Significant Test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_bins =</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">cut</span>(resale_price, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">300000</span>,<span class="dv">400000</span>,<span class="dv">500000</span>,<span class="dv">600000</span>,<span class="dv">700000</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbarstats</span>(df1, </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> price_bins, </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> flat_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="exercise3_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="1152"></p>
+</div>
+</div>
+<p>3 ROOM resale price are most located in the lowest range between $300k and $400k. 4 Room are most located in the second and third layers, almost 85 percent are in $400kM and $600k. while for 5 Room, 40 percent are above $600k, while half are in $500k and $600k.</p>
+<p>3.1.4 Statistic Model</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl, performance, parameters, see)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">flat_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                    flat_type <span class="sc">==</span> <span class="st">"3 ROOM"</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                    flat_type <span class="sc">==</span> <span class="st">"4 ROOM"</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                    flat_type <span class="sc">==</span> <span class="st">"5 ROOM"</span> <span class="sc">~</span> <span class="dv">5</span>,)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                  )</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(resale_price <span class="sc">~</span> floor_area_sqm<span class="sc">+</span>flat_type<span class="sc">+</span>town<span class="sc">+</span>storey_range<span class="sc">+</span>flat_model,<span class="at">data=</span>df1)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = resale_price ~ floor_area_sqm + flat_type + town + 
+    storey_range + flat_model, data = df1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-273309  -46369   -4458   43262  464371 
+
+Coefficients:
+                                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                       3.195e+04  2.786e+04   1.147  0.25156    
+floor_area_sqm                    8.936e+00  8.522e+01   0.105  0.91649    
+flat_type                         1.536e+05  2.335e+03  65.789  &lt; 2e-16 ***
+townBEDOK                        -5.016e+04  2.926e+03 -17.142  &lt; 2e-16 ***
+townBISHAN                        6.675e+04  4.200e+03  15.890  &lt; 2e-16 ***
+townBUKIT BATOK                  -7.448e+04  3.319e+03 -22.437  &lt; 2e-16 ***
+townBUKIT MERAH                   7.651e+04  3.271e+03  23.393  &lt; 2e-16 ***
+townBUKIT PANJANG                -1.381e+05  3.408e+03 -40.532  &lt; 2e-16 ***
+townBUKIT TIMAH                   1.045e+05  1.011e+04  10.339  &lt; 2e-16 ***
+townCENTRAL AREA                  3.818e+04  6.318e+03   6.043 1.54e-09 ***
+townCHOA CHU KANG                -1.373e+05  3.108e+03 -44.189  &lt; 2e-16 ***
+townCLEMENTI                      5.854e+03  3.561e+03   1.644  0.10016    
+townGEYLANG                       2.632e+03  3.635e+03   0.724  0.46904    
+townHOUGANG                      -7.420e+04  3.069e+03 -24.180  &lt; 2e-16 ***
+townJURONG EAST                  -9.693e+04  3.988e+03 -24.304  &lt; 2e-16 ***
+townJURONG WEST                  -1.380e+05  3.009e+03 -45.846  &lt; 2e-16 ***
+townKALLANG/WHAMPOA               4.658e+04  3.316e+03  14.049  &lt; 2e-16 ***
+townMARINE PARADE                 7.301e+04  5.604e+03  13.028  &lt; 2e-16 ***
+townPASIR RIS                    -9.132e+04  3.784e+03 -24.133  &lt; 2e-16 ***
+townPUNGGOL                      -9.381e+04  3.034e+03 -30.918  &lt; 2e-16 ***
+townQUEENSTOWN                    6.686e+04  3.606e+03  18.544  &lt; 2e-16 ***
+townSEMBAWANG                    -1.154e+05  3.608e+03 -31.994  &lt; 2e-16 ***
+townSENGKANG                     -1.157e+05  2.936e+03 -39.410  &lt; 2e-16 ***
+townSERANGOON                    -1.034e+04  4.286e+03  -2.412  0.01585 *  
+townTAMPINES                     -6.417e+04  2.997e+03 -21.412  &lt; 2e-16 ***
+townTOA PAYOH                     1.058e+04  3.465e+03   3.053  0.00227 ** 
+townWOODLANDS                    -1.279e+05  2.925e+03 -43.722  &lt; 2e-16 ***
+townYISHUN                       -9.663e+04  2.850e+03 -33.903  &lt; 2e-16 ***
+storey_range04 TO 06              1.966e+04  1.420e+03  13.840  &lt; 2e-16 ***
+storey_range07 TO 09              3.431e+04  1.440e+03  23.832  &lt; 2e-16 ***
+storey_range10 TO 12              4.315e+04  1.488e+03  28.991  &lt; 2e-16 ***
+storey_range13 TO 15              6.515e+04  1.804e+03  36.105  &lt; 2e-16 ***
+storey_range16 TO 18              8.993e+04  2.345e+03  38.351  &lt; 2e-16 ***
+storey_range19 TO 21              1.308e+05  3.337e+03  39.195  &lt; 2e-16 ***
+storey_range22 TO 24              1.473e+05  3.933e+03  37.454  &lt; 2e-16 ***
+storey_range25 TO 27              1.810e+05  4.444e+03  40.726  &lt; 2e-16 ***
+storey_range28 TO 30              2.285e+05  5.551e+03  41.162  &lt; 2e-16 ***
+storey_range31 TO 33              2.258e+05  7.186e+03  31.424  &lt; 2e-16 ***
+storey_range34 TO 36              2.440e+05  7.037e+03  34.674  &lt; 2e-16 ***
+storey_range37 TO 39              2.573e+05  8.332e+03  30.882  &lt; 2e-16 ***
+storey_range40 TO 42              2.884e+05  1.307e+04  22.061  &lt; 2e-16 ***
+storey_range43 TO 45              2.780e+05  2.055e+04  13.532  &lt; 2e-16 ***
+storey_range46 TO 48              3.861e+05  3.074e+04  12.560  &lt; 2e-16 ***
+storey_range49 TO 51              2.930e+05  4.299e+04   6.816 9.54e-12 ***
+flat_modelAdjoined flat          -1.318e+05  3.088e+04  -4.268 1.98e-05 ***
+flat_modelDBSS                    8.007e+04  2.774e+04   2.887  0.00390 ** 
+flat_modelImproved               -1.387e+05  2.751e+04  -5.041 4.65e-07 ***
+flat_modelImproved-Maisonette     4.188e+04  5.833e+04   0.718  0.47283    
+flat_modelModel A                -4.859e+04  2.751e+04  -1.766  0.07741 .  
+flat_modelModel A-Maisonette      4.210e+04  2.909e+04   1.447  0.14779    
+flat_modelModel A2               -1.088e+05  2.782e+04  -3.912 9.18e-05 ***
+flat_modelNew Generation         -1.302e+05  2.755e+04  -4.724 2.32e-06 ***
+flat_modelPremium Apartment      -4.748e+04  2.753e+04  -1.725  0.08457 .  
+flat_modelPremium Apartment Loft  1.713e+05  3.378e+04   5.071 3.98e-07 ***
+flat_modelSimplified             -1.454e+05  2.760e+04  -5.266 1.40e-07 ***
+flat_modelStandard               -2.107e+05  2.766e+04  -7.617 2.68e-14 ***
+flat_modelTerrace                 3.357e+05  3.347e+04  10.029  &lt; 2e-16 ***
+flat_modelType S1                 2.472e+05  3.029e+04   8.161 3.47e-16 ***
+flat_modelType S2                 2.043e+05  3.197e+04   6.390 1.69e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 72670 on 27309 degrees of freedom
+Multiple R-squared:  0.7885,    Adjusted R-squared:  0.7881 
+F-statistic:  1756 on 58 and 27309 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Checking for multicolinearity. Multicollinearity refers to a situation in which two or more predictor variables in a linear regression model are highly correlated with each other. In such cases, it becomes difficult to estimate the individual effect of each predictor variable on the outcome variable, and it can lead to unstable and unreliable estimates of the regression coefficients.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>check_c <span class="ot">&lt;-</span> <span class="fu">check_collinearity</span>(model)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(check_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Variable `Component` is not in your data frame :/</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="exercise3_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that floor type and floor area is highly correlated. This also make sense in reality: larger house would have more rooms.</p>
+<p>Checking normality assumption.The normality assumption is required for valid statistical inference. The normality assumption also enables the calculation of accurate confidence intervals and p-values for the regression coefficients.Normality of the residuals indicates that the model is capturing the majority of the variation in the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>check_n <span class="ot">&lt;-</span> <span class="fu">check_normality</span>(model)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(check_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="exercise3_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that our model almost follow normal distribution.</p>
+<p>Check model for homogeneity of variances.Checking the homogeneity of variances is an important assumption for linear regression models. In linear regression, the homogeneity of variances assumption means that the variance of the residuals is constant across all levels of the predictor variables.When the homogeneity of variances assumption is not met, the regression model may not provide accurate predictions, and the standard errors and p-values may be biased, which can lead to incorrect conclusions about the significance of the predictor variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>check_h <span class="ot">&lt;-</span> <span class="fu">check_heteroscedasticity</span>(model)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(check_h)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="exercise3_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that Homogeneity of variance is not violated.validity and accuracy of the linear regression model is confirmed.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

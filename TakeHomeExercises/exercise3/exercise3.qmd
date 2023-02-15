@@ -1,0 +1,162 @@
+---
+title: "Take Home Exercise3"
+editor: visual
+---
+
+This exercise is proposed on analyzing the resale prices of public housing property by residential towns and estates in Singapore and discover the salient patterns. ggplot2 and its extensions should be the main tools to be applied.
+
+For the purpose of this study, the focus should be on 3-ROOM, 4-ROOM and 5-ROOM types. The study period should be on 2022
+
+1.  Import and preprocess the data set raw data can be acquired from https://data.gov.sg/dataset/resale-flat-prices
+
+```{r}
+rm(list=ls())
+df <- read.csv("data/resale-flat-prices-based-on-registration-date-from-jan-2017-onwards.csv")
+summary(df)
+head(df,10)
+```
+
+extract data that is on 3-ROOM, 4-ROOM and 5-ROOM types and happened in 2022.
+
+```{r}
+df <- df[(df$month >= 2022/01/01)&(df$month <= 2022/12/31),]
+df <- df[(df$flat_type == "3 ROOM")|(df$flat_type == "4 ROOM")|(df$flat_type == "5 ROOM"),]
+head(df,10)
+```
+
+2.  Selection and Designed Consideration
+3.  Analytics
+
+load ggplot and tidyverse packages
+
+```{r}
+pacman::p_load(ggplot2,ggstatsplot,tidyverse)
+```
+
+3.1 Statistical Analysis
+
+3.1.1 One sample test on the sample mean for 3 different flat types. For each one of three types, we want to see how well the sample is reflecting the population.
+
+3 ROOM
+
+```{r}
+set.seed(1234)
+
+gghistostats(
+  data = df[df$flat_type=="3 ROOM",],
+  x = resale_price,
+  conf.level = 0.99,
+  type = "parametric ",
+  xlab = "Resale Price",
+  title = "One Sample test on 3 ROOM Resale Price"
+)
+```
+
+4 ROOM
+
+```{r}
+gghistostats(
+  data = df[df$flat_type=="4 ROOM",],
+  x = resale_price,
+  conf.level = 0.99,
+  type = "parametric ",
+  xlab = "Resale Price",
+  title = "One Sample test on 4 ROOM Resale Price"
+)
+```
+
+5 ROOM
+
+```{r}
+gghistostats(
+  data = df[df$flat_type=="5 ROOM",],
+  x = resale_price,
+  conf.level = 0.99,
+  type = "parametric",
+  xlab = "Resale Price",
+  title = "One Sample test on 5 ROOM Resale Price"
+)
+```
+
+From 3 graphs above, we can see that all 3 tests have a p value less than 0.01, which means our sample is indicating the population mean at 0.99 confidence level. Mean resale price of 3 Room, 4 Room and 5 Room are respectively \$391000, \$551000 and \$656000.
+
+3.1.2 One-way Anova. We can compare the sample mean among 3 types.
+
+```{r}
+ggbetweenstats(
+  data = df,
+  x = flat_type, 
+  y = resale_price,
+  conf.level = 0.95,
+  type = "parametric",
+  mean.ci = TRUE, 
+  pairwise.comparisons = TRUE, 
+  pairwise.display = "s",
+  p.adjust.method = "fdr",
+  messages = FALSE,
+  xlab = "Flat Type",
+  ylab = "Resale Price",
+  title = "One Way Anova test on Resale Price vs Flat Type"
+)
+```
+
+It is clear that p value is less than 0.01. There are significant difference between the sample means.
+
+3.1.3 Significant Test
+
+```{r}
+#| fig-width: 12
+#| fig-height: 12
+df1 <- df %>% 
+  mutate(price_bins = 
+           cut(resale_price, 
+               breaks = c(300000,400000,500000,600000,700000))
+)
+ggbarstats(df1, 
+           x = price_bins, 
+           y = flat_type)
+
+```
+
+3 ROOM resale price are most located in the lowest range between \$300k and \$400k. 4 Room are most located in the second and third layers, almost 85 percent are in \$400kM and \$600k. while for 5 Room, 40 percent are above \$600k, while half are in \$500k and \$600k.
+
+3.1.4 Statistic Model
+
+```{r}
+pacman::p_load(readxl, performance, parameters, see)
+df1 <- df %>%
+   mutate(flat_type = case_when(
+                    flat_type == "3 ROOM" ~ 3,
+                    flat_type == "4 ROOM" ~ 4,
+                    flat_type == "5 ROOM" ~ 5,)
+                  )
+model <- lm(resale_price ~ floor_area_sqm+flat_type+town+storey_range+flat_model,data=df1)
+summary(model)
+```
+
+Checking for multicolinearity. Multicollinearity refers to a situation in which two or more predictor variables in a linear regression model are highly correlated with each other. In such cases, it becomes difficult to estimate the individual effect of each predictor variable on the outcome variable, and it can lead to unstable and unreliable estimates of the regression coefficients.
+
+```{r}
+check_c <- check_collinearity(model)
+plot(check_c)
+```
+
+We can see that floor type and floor area is highly correlated. This also make sense in reality: larger house would have more rooms.
+
+Checking normality assumption.The normality assumption is required for valid statistical inference. The normality assumption also enables the calculation of accurate confidence intervals and p-values for the regression coefficients.Normality of the residuals indicates that the model is capturing the majority of the variation in the data.
+
+```{r}
+check_n <- check_normality(model)
+plot(check_n)
+```
+
+We can see that our model almost follow normal distribution.
+
+Check model for homogeneity of variances.Checking the homogeneity of variances is an important assumption for linear regression models. In linear regression, the homogeneity of variances assumption means that the variance of the residuals is constant across all levels of the predictor variables.When the homogeneity of variances assumption is not met, the regression model may not provide accurate predictions, and the standard errors and p-values may be biased, which can lead to incorrect conclusions about the significance of the predictor variables.
+
+```{r}
+check_h <- check_heteroscedasticity(model)
+plot(check_h)
+```
+
+We can see that Homogeneity of variance is not violated.validity and accuracy of the linear regression model is confirmed.

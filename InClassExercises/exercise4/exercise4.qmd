@@ -1,0 +1,109 @@
+---
+title: "exercise4"
+author: "Li Xingyun"
+date: "4 Feb 2023"
+date-modified: "`r Sys.Date()"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+editor: visual
+---
+
+```{r}
+pacman::p_load(DT,plotly,tidyverse,patchwork,ggiraph,ggstatsplot,readxl, performance, parameters, see)
+```
+
+```{r}
+exam_data <- read_csv("data/Exam_data.csv")
+```
+
+```{r}
+plot_ly(data = exam_data,
+        x = ~ENGLISH,
+        y = ~MATHS,
+        color = ~RACE) #<<
+```
+
+```{r}
+pal <- c("pink", "purple", "blue", "green") #<<
+
+plot_ly(data = exam_data, 
+        x = ~ENGLISH, 
+        y = ~MATHS, 
+        color = ~RACE, 
+        colors = pal) 
+```
+
+```{r}
+plot_ly(data = exam_data, 
+        x = ~ENGLISH, 
+        y = ~MATHS,
+        text = ~paste("Student ID:", ID,     #<<
+                      "<br>Class:", CLASS),  #<<
+        color = ~RACE, 
+        colors = "Set1")
+```
+
+```{r}
+p<-ggplot(data = exam_data,
+       aes(x = MATHS,
+           y = ENGLISH)) +
+      geom_point(dotsize=1)+
+  coord_cartesian(xlim=c(0,100),
+                  ylim=c(0,100))
+ggplotly(p)
+```
+
+```{r}
+p <- ggplot(data=exam_data, 
+       aes(x = MATHS)) +
+  geom_dotplot_interactive(              
+    aes(tooltip = CLASS, #<<
+        data_id = CLASS),#<<              
+    stackgroups = TRUE,                  
+    binwidth = 1,                        
+    method = "histodot") +               
+  scale_y_continuous(NULL,               
+                     breaks = NULL)
+girafe(                                  
+  ggobj = p,                             
+  width_svg = 6,                         
+  height_svg = 6*0.618,
+  options = list(                        
+    opts_hover(css = "fill: #202020;"),  
+    opts_hover_inv(css = "opacity:0.2;") 
+  )                                        
+)             
+```
+
+```{r}
+ggbetweenstats(
+  data = exam_data,
+  x = GENDER,
+  y = MATHS,
+  type = "p",
+  messages = FALSE
+)
+```
+
+```{r}
+ggscatterstats(
+  data = exam_data,
+  x = MATHS,
+  y = ENGLISH,
+  marginal = FALSE
+)
+```
+
+```{r}
+car_resale <- read_xls("ToyotaCorolla.xls", 
+                       "data")
+car_resale
+```
+
+```{r}
+model <- lm(Price ~ Age_08_04 + Mfg_Year + KM + 
+              Weight + Guarantee_Period, data = car_resale)
+model
+```
