@@ -30,6 +30,8 @@ website:
             href: InClassExercises/exercise4/exercise4.qmd
           - text: Week 5
             href: InClassExercises/exercise5/exercise5.qmd
+          - text: Week 7
+            href: InClassExercises/exercise7/exercise7.qmd
 format:
   html:
     theme: sandstone
