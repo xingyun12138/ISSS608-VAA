@@ -22,6 +22,8 @@ website:
             href: TakeHomeExercises/exercise2/exercise2.qmd
           - text: Week 3
             href: TakeHomeExercises/exercise3/exercise3.qmd
+          - text: Week 4
+            href: TakeHomeExercises/exercise4/exercise4.qmd  
       - text: In-Class-Exercises
         menu: 
           - text: Week 3
